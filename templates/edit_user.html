@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Editando Usuario</title>
+    </head>
+    <body>
+        <form action="/edit-user/{{ user.id }}" method="POST">
+            <input type="hidden" name="id" value="{{ user.id }}">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" value="{{ user.username }}"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" value="{{ user.password }}"><br><br>
+            <input type="submit" value="Submit">
+          </form> 
+    </body>
+</html>

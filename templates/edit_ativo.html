@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Cadastro de Ativo Financeiro</title>
+        <style>
+            .field {
+                padding-bottom: 10;
+            }
+
+            .info {
+                color: red;
+            }
+
+            .bloco {
+                padding: auto;
+                margin-top: 10;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Edicao de Ativo Financeiro</h3>
+        <form class="bloco" method="post" action="/edit-ativo/{{ ativo.id }}">
+            <input type="hidden" name="id" value="{{ ativo.id }}">
+            <div class="field">
+            <label for=tipo>Tipo </label><select id="tipo" name='tipo'>
+                <option value="ACAO" {% if ativo.tipo == "ACAO" %}selected{% endif %}>Ação</option>
+                <option value="FII" {% if ativo.tipo == "FII" %}selected{% endif %}>FII</option>    
+              </select>
+            </div>
+
+            <div class="field">
+            <label for="codigo">Código </label><input id="codigo" name="codigo" type="text" maxlength=7 value="{{ ativo.codigo }}">
+            </div>
+
+            <div class="field">
+                <label for="Descrição">Descrição </label>
+                <textarea id="Descricao" name="descricao" maxlength="255">{{ ativo.descricao }}</textarea>
+            </div>
+            <div class="field">
+                <label for="data">Data </label><input id="data" name="data" type="date" maxlength=5 value="{{ ativo.data }}">
+                </div>
+            <div class="action">
+                <input type="submit" value="Salvar">
+            </div>
+        </form>
+        <form method="GET" action="/listar_ativos">
+            <input type="submit" value="Voltar">
+        </form>
+    </body>
+</html>

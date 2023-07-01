@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>Menu Principal</title>
+    </head>
+    <body>
+        {% if username %}
+        <form method="get" action="/cadastrar_ativo">
+            <p><input type=submit value="Cadastrar Ativos">
+        </form>
+        <form method="get" action="/cadastrar_negociacao">
+            <p><input type=submit value="Cadastrar Negociacoes">
+        </form>
+        <form method="post" action="/listar_ativos">
+            <p><input type=submit value="Ativos">
+        </form>
+        <form method="POST" action="/listar-negociacoes">
+            <p><input type=submit value="Negociacoes">
+        </form>
+        <form method="post" action="/logout">
+            <p><input type=submit value="Sair">
+        </form>
+        <form method="post" action="/delete-user">
+            <p><input type=submit value="Deletar user">
+        </form>
+        <form method="post" action="/editar_users">
+            <p><input type=submit value="Editar user">
+        </form>
+        
+
+        {% else %}
+            <h2>É preciso estar logado para entrar nesta página!</h2>
+        {% endif %}
+
+        {% if msg %}
+            <h5 style="color:#ff0000">{{msg}} </h5>
+        {% endif %}
+
+        {% if ativos %}
+            {% if ativos | length > 0 %}
+            <table>
+                <tr>
+                    <td>Código</td>
+                    <td>Tipo</td>
+                    <td>Descrição</td>
+                    <td>Desde de</td>
+                </tr>
+                {% for ativo in ativos %}
+                    <tr>
+                        <td>{{ ativo.codigo }}</td>
+                        <td>{{ ativo.tipo }}</td>
+                        <td>{{ ativo.descricao }}</td>
+                        <td>{{ ativo.data }}</td>
+                        <form action="/listar_ativos/{{ ativo.id }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Deletar Ativo {{ ativo.codigo }}">
+                          </form>
+                          <form action="/editar_ativo/{{ ativo.id }}" method="POST">
+                            <input type="hidden" name="_method" value="Editar">
+                            <input type="submit" value="Editar Ativo {{ ativo.codigo }}">
+                          </form>
+                    </tr>
+                {% endfor %}
+            </table>
+            
+            {% endif %}
+        {% else %}
+            <p>Nenhum ativo cadastrado!</p>
+        {% endif %}
+        
+        {% if negociacoes %}
+        {% if negociacoes | length > 0 %} 
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ativo</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th>Tipo</th>
+                <th>Data</th>
+                <th>Usuário</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for negociacao in negociacoes %}
+                <tr>
+                  <td>{{ negociacao.id }}</td>
+                  <td>{{ negociacao.ativo_id }}</td>
+                  <td>{{ negociacao.quantidade }}</td>
+                  <td>{{ negociacao.valor }}</td>
+                  <td>{{ negociacao.tipo }}</td>
+                  <td>{{ negociacao.data }}</td>
+                  <td>{{ negociacao.user.username }}</td>
+                </tr>
+                <form action="/listar_negociacoes/{{ negociacao.id }}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Deletar Negociacao {{ negociacao.id }}">
+                  </form>
+                <form action="/editar_negociacao/{{ negociacao.id }}" method="POST">
+                    <input type="hidden" name="_method" value="Editar">
+                    <input type="submit" value="Editar negociacao {{ negociacao.id }}">
+                  </form>
+              {% endfor %}
+              {% endif %}
+              {% else %}
+                  <p>Nenhuma negociacao cadastrada!</p>
+              {% endif %}
+            </tbody>
+          </table>
+
+    
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Cadastro de Ativo Financeiro</title>
+        <style>
+            .field {
+                padding-bottom: 10;
+            }
+
+            .info {
+                color: red;
+            }
+
+            .bloco {
+                padding: auto;
+                margin-top: 10;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Cadastro de Ativo Financeiro</h3>
+        {% if msg %}
+            <p4 class="info">{{msg}}</p4>
+            <br />
+        {% endif %}
+        <form class="bloco" method="post" action="/salvar_ativo">
+            <div class="field">
+            <label for=tipo>Tipo </label><select id="tipo" name='tipo'>
+                <option value="ACAO">Ação</option>
+                <option value="FII" selected>FII</option>    
+            </select>
+            </div>
+
+            <div class="field">
+            <label for="codigo">Código </label><input id="codigo" name="codigo" type="text" maxlength=7>
+            </div>
+
+            <div class="field">
+                <label for="Descrição">Descrição </label>
+                <textarea id="Descricao" name="descricao" maxlength="255">
+
+                </textarea>
+            </div>
+            <div class="field">
+                <label for="data">Data </label><input id="data" name="data" type="date" maxlength=5>
+                </div>
+            <div class="action">
+                <input type="submit" value="Salvar">
+            </div>
+        </form>
+        <form method="GET" action="/listar_ativos">
+            <input type="submit" value="Voltar">
+        </form>
+    </body>
+</html>

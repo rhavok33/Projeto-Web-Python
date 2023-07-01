@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Cadastro de Negociacao</title>
+        <style>
+            .field {
+                padding-bottom: 10;
+            }
+
+            .info {
+                color: red;
+            }
+
+            .bloco {
+                padding: auto;
+                margin-top: 10;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Cadastro de Negociacao</h3>
+        {% if msg %}
+            <p4 class="info">{{msg}}</p4>
+            <br />
+        {% endif %}
+        {% if username %}
+        <form action="/create-negociacao" method="POST">
+            <label for="ativo_id">Ativo:</label><br>
+            <select id="ativo_id" name="ativo_id">
+              {% for ativo in ativos %}
+                <option value="{{ ativo.codigo }}">{{ ativo.codigo}}</option>
+              {% endfor %}
+            </select><br>
+            <label for="quantidade">Quantidade:</label><br>
+            <input type="number" id="quantidade" name="quantidade"><br>
+            <label for="valor">Valor:</label><br>
+            <input type="number" id="valor" name="valor"><br>
+            <label for="tipo">Tipo:</label><br>
+            <select id="tipo" name="tipo">
+              <option value="compra">Compra</option>
+              <option value="venda">Venda</option>
+            </select><br>
+            <div class="field">
+                <label for="data">Data </label><input id="data" name="data" type="date" maxlength=5>
+                </div>
+            <input type="submit" value="Cadastrar">
+          </form> 
+          <form method="GET" action="/listar-negociacoes">
+            <input type="submit" value="Voltar">
+        </form>
+        {% endif %}
+    </body>
+</html>

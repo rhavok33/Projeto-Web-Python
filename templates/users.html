@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Usuarios</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+              <th>Username</th>
+              <th></th>
+            </tr>
+            {% for user in users %}
+            <tr>
+              <td>{{ user.username }}</td>
+              <td>
+                <form action="/delete-user2" method="POST">
+                  <input type="hidden" name="username" value="{{ user.username}}">
+                  <input type="submit" value="Delete">
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+          <form method="post" action="/al">
+            <p><input type=submit value="Sair">
+        </form>
+    </body>
+</html>

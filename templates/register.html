@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Registrando</title>
+    </head>
+    <body>
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="Register">
+        </form>
+        {% if msg %}
+        <h5 style="color:#ff0000">{{msg}} </h5>
+        {% endif %}
+
+        <form method="post" action="/al">
+            <label>Ja tenho cadastro</label>
+            <p><input type=submit name="Ja tenho cadastro " value="Log in">
+        </form>
+
+</body>
+</html>

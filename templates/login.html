@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Ativos Financeiros Tabajara</title>
+    </head>
+    <body>
+        <form action="/login" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="Login">
+        </form>
+        <form method="post" action="/">
+            <label>Realizar Cadastro</label>
+            <p><input type=submit value="Sign in">
+        </form>
+        {% if msg %}
+            <h5 style="color:#ff0000">{{msg}} </h5>
+        {% endif %}
+    </body>
+</html>
+
